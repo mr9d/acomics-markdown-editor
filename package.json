@@ -42,5 +42,11 @@
     "typescript-eslint": "^8.31.0",
     "webpack": "^5.99.6",
     "webpack-cli": "^6.0.1"
+  },
+  "dependencies": {
+    "prosemirror-example-setup": "^1.2.3",
+    "prosemirror-markdown": "^1.13.2",
+    "prosemirror-state": "^1.4.3",
+    "prosemirror-view": "^1.39.2"
   }
 }

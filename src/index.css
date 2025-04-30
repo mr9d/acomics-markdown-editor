@@ -1,0 +1,4 @@
+@import url('prosemirror-view/style/prosemirror.css');
+@import url('prosemirror-example-setup/style/style.css');
+@import url('prosemirror-menu/style/menu.css');
+@import url('prosemirror-gapcursor/style/gapcursor.css');
