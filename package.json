@@ -1,0 +1,46 @@
+{
+  "name": "acomics-markdown-editor",
+  "version": "1.0.0",
+  "description": "Acomics Markdown editor",
+  "main": "dist/bundle.js",
+  "scripts": {
+    "clean": "rm -rf dist",
+    "test": "echo No tests yet",
+    "lint": "eslint src/**",
+    "lint:fix": "eslint --fix src/**",
+    "build": "webpack --config webpack.config.js",
+    "preversion": "npm run lint && npm run test && npm run clean && npm run build",
+    "version": "node release && git add .",
+    "release:major": "npm version major",
+    "release:minor": "npm version minor",
+    "release:patch": "npm version patch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/mr9d/acomics-markdown-editor.git"
+  },
+  "author": {
+    "name": "Aleksandr Kozlov",
+    "email": "themrgd@gmail.com",
+    "url": "https://github.com/mr9d"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mr9d/acomics-markdown-editor/issues"
+  },
+  "homepage": "https://github.com/mr9d/acomics-markdown-editor#readme",
+  "devDependencies": {
+    "@eslint/js": "^9.25.1",
+    "css-loader": "^7.1.2",
+    "eslint": "^9.25.1",
+    "globals": "^16.0.0",
+    "html-loader": "^5.1.0",
+    "mini-css-extract-plugin": "^2.9.2",
+    "sri": "^1.1.0",
+    "ts-loader": "^9.5.2",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.31.0",
+    "webpack": "^5.99.6",
+    "webpack-cli": "^6.0.1"
+  }
+}
