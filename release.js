@@ -22,8 +22,8 @@ const cssSriHash = sri.getSRIString(fs.readFileSync(`${dir}/bundle.css`).toStrin
 const readmeContent = `# Встраивание модуля на страницу
 
 \`\`\`
-<script defer src="https://cdn.jsdelivr.net/gh/mr9d/acomics-acomics-markdown-editor@master/versions/${version}/bundle.js" integrity="${jsSriHash}" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mr9d/acomics-acomics-markdown-editor@master/versions/${version}/bundle.css" integrity="${cssSriHash}" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/gh/mr9d/acomics-markdown-editor@master/versions/${version}/bundle.js" integrity="${jsSriHash}" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mr9d/acomics-markdown-editor@master/versions/${version}/bundle.css" integrity="${cssSriHash}" crossorigin="anonymous">
 \`\`\`
 `;
 
