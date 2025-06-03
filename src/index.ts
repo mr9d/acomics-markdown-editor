@@ -92,6 +92,7 @@ markdownTextareas.forEach((textarea: HTMLTextAreaElement, key: number) => {
   const proseMirrorView = new ProseMirrorView(wrapper);
   proseMirrorView.show();
 
+  // Обработчик переключения View
   const viewInputChangeListener = (evt: Event) => {
     const target: HTMLInputElement = evt.target as HTMLInputElement;
     if (target.checked) {

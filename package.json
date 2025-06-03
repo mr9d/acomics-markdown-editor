@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Acomics Markdown editor",
   "main": "dist/bundle.js",
+  "type": "module",
   "scripts": {
     "clean": "rm -rf dist",
     "test": "echo No tests yet",

@@ -1,23 +1,21 @@
-const fs = require('fs');
-const sri = require('sri');
-const package = require('./package.json');
-
-const version = package.version;
+import { existsSync, mkdirSync, copyFileSync, readFileSync, writeFileSync } from 'fs';
+import { getSRIString } from 'sri';
+import { version } from './package.json';
 
 const dir = `versions/${version}`;
 
-if (!fs.existsSync(dir)){
-  fs.mkdirSync(dir, {recursive: true});
+if (!existsSync(dir)){
+  mkdirSync(dir, {recursive: true});
 }
 
-fs.copyFileSync('dist/bundle.js', `${dir}/bundle.js`);
-fs.copyFileSync('dist/bundle.css', `${dir}/bundle.css`);
+copyFileSync('dist/bundle.js', `${dir}/bundle.js`);
+copyFileSync('dist/bundle.css', `${dir}/bundle.css`);
 
 //
 // See https://www.srihash.org/ for more info about this section
 //
-const jsSriHash = sri.getSRIString(fs.readFileSync(`${dir}/bundle.js`).toString());
-const cssSriHash = sri.getSRIString(fs.readFileSync(`${dir}/bundle.css`).toString());
+const jsSriHash = getSRIString(readFileSync(`${dir}/bundle.js`).toString());
+const cssSriHash = getSRIString(readFileSync(`${dir}/bundle.css`).toString());
 
 const readmeContent = `# Встраивание модуля на страницу
 
@@ -27,4 +25,4 @@ const readmeContent = `# Встраивание модуля на страниц
 \`\`\`
 `;
 
-fs.writeFileSync(`${dir}/README.md`, readmeContent);
+writeFileSync(`${dir}/README.md`, readmeContent);
