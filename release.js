@@ -1,6 +1,8 @@
 import { existsSync, mkdirSync, copyFileSync, readFileSync, writeFileSync } from 'fs';
 import { getSRIString } from 'sri';
-import { version } from './package.json';
+import packageJson from './package.json' with { type: 'json' };
+
+const { version } = packageJson;
 
 const dir = `versions/${version}`;
 
