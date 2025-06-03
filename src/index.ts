@@ -6,7 +6,6 @@ import { exampleSetup } from "prosemirror-example-setup";
 import './index.css';
 
 import editorHtml from './editor.html';
-console.log(editorHtml);
 
 // HTML-элемент, по которому происходит инициализация редактора
 const EDITOR_TAG: string = 'textarea';
@@ -17,15 +16,14 @@ const EDITOR_CLASS: string = 'acomicsMarkdownEditor';
 // Класс-обертка редактора
 const WRAPPER_CLASS: string = 'acomicsMarkdownEditorWrapper';
 
-// Класс-переключатель режима редактора
-const SWITCHER_CLASS: string = 'acomicsMarkdownEditorSwitcher';
-
 
 class MarkdownView {
+  private container: HTMLDivElement;
   private textarea: HTMLTextAreaElement;
 
-  constructor(textarea: HTMLTextAreaElement) {
-    this.textarea = textarea;
+  constructor(wrapper: HTMLDivElement) {
+    this.container = wrapper.querySelector('.markdown');
+    this.textarea = this.container.querySelector('textarea');
   }
 
   get content() {
@@ -33,29 +31,24 @@ class MarkdownView {
   }
 
   show() {
-    this.textarea.style.display = 'block';
+    this.container.style.display = 'flex';
     this.textarea.focus();
   }
 
   hide() {
-    this.textarea.style.display = 'none';
+    this.container.style.display = 'none';
   }
 }
 
 
 class ProseMirrorView {
+  private container: HTMLDivElement;
+  private textarea: HTMLTextAreaElement;
   private view: EditorView;
-  private target: HTMLDivElement;
 
-  constructor(textarea: HTMLTextAreaElement) {
-    this.target = document.createElement('div');
-    textarea.after(this.target);
-    this.view = new EditorView(this.target, {
-      state: EditorState.create({
-        doc: defaultMarkdownParser.parse(textarea.value),
-        plugins: exampleSetup({ schema })
-      }),
-    });
+  constructor(wrapper: HTMLDivElement) {
+    this.textarea = wrapper.querySelector('.markdown textarea');
+    this.container = wrapper.querySelector('.visual');
   }
 
   get content() {
@@ -63,12 +56,20 @@ class ProseMirrorView {
   }
 
   show() {
-    this.target.style.display = 'block';
+    this.view = new EditorView(this.container, {
+      state: EditorState.create({
+        doc: defaultMarkdownParser.parse(this.textarea.value),
+        plugins: exampleSetup({ schema })
+      }),
+    });
+    this.container.style.display = 'flex';
     this.view.focus();
   }
 
   hide() {
-    this.target.style.display = 'none';
+    this.view.destroy();
+    this.textarea.value = this.content;
+    this.container.style.display = 'none';
   }
 }
 
@@ -76,24 +77,42 @@ class ProseMirrorView {
 const markdownTextareas: NodeListOf<HTMLTextAreaElement> = document.querySelectorAll(`${EDITOR_TAG}.${EDITOR_CLASS}`);
 
 // Инициализация всех редакторов на странице
-markdownTextareas.forEach((textarea: HTMLTextAreaElement) => {
+markdownTextareas.forEach((textarea: HTMLTextAreaElement, key: number) => {
 
-  // Создаем обертку
-  const wrapper = document.createElement('div');
-  wrapper.classList.add(WRAPPER_CLASS);
+  // Добавляет HTML-обертку редактора
+  textarea.insertAdjacentHTML('afterend', editorHtml);
+  const wrapper: HTMLDivElement = textarea.parentNode.querySelector(`.${WRAPPER_CLASS}`);
 
-  // Размещаем обертку и кладем элемент textarea в него
-  textarea.after(wrapper);
-  wrapper.append(textarea);
+  // Кладем элемент textarea внутрь обертки
+  wrapper.querySelector('.markdown').append(textarea);
 
   // Инициализируем View
-  const markdownView = new MarkdownView(textarea);
+  const markdownView = new MarkdownView(wrapper);
   markdownView.hide();
-  const proseMirrorView = new ProseMirrorView(textarea);
+  const proseMirrorView = new ProseMirrorView(wrapper);
   proseMirrorView.show();
 
+  const viewInputChangeListener = (evt: Event) => {
+    const target: HTMLInputElement = evt.target as HTMLInputElement;
+    if (target.checked) {
+      if (target.value === 'visual') {
+        markdownView.hide();
+        proseMirrorView.show();
+      } else {
+        proseMirrorView.hide();
+        markdownView.show();
+      }
+    }
+  };
+
   // Переключатель View
-  const switcher = document.createElement('div');
-  switcher.classList.add(SWITCHER_CLASS);
-  wrapper.after(switcher);
+  wrapper.querySelectorAll('.switcher input[name="view"]').forEach(
+    (input: HTMLInputElement) => {
+      // Обновляем name для поддержки нескольких редакторов на странице
+      input.name = `view${key}`;
+
+      // Добавляем обработчик переключения
+      input.addEventListener('change', viewInputChangeListener);
+    }
+  );
 });

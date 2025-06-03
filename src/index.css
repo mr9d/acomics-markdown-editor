@@ -2,3 +2,42 @@
 @import url('prosemirror-example-setup/style/style.css');
 @import url('prosemirror-menu/style/menu.css');
 @import url('prosemirror-gapcursor/style/gapcursor.css');
+
+/*
+ * Общие элементы
+ */
+.acomicsMarkdownEditorWrapper .resize {
+  resize: vertical;
+  overflow: auto;
+  display: flex;
+}
+
+/*
+ * Текстовый редактор Markdown
+ */
+.acomicsMarkdownEditorWrapper .markdown {
+  flex-grow: 1;
+  display: flex;
+}
+
+.acomicsMarkdownEditorWrapper .markdown textarea {
+  flex-grow: 1;
+}
+
+/*
+ * Визуальный редактор
+ */
+.acomicsMarkdownEditorWrapper .visual {
+  flex-grow: 1;
+  display: flex;
+}
+
+.acomicsMarkdownEditorWrapper .ProseMirror-menubar-wrapper {
+  flex-grow: 1;
+  flex-direction: column;
+  display: flex;
+}
+
+.acomicsMarkdownEditorWrapper .ProseMirror {
+  flex-grow: 1;
+}
