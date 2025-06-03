@@ -1,7 +1,7 @@
-const path = require('path');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+import { resolve } from 'path';
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
 
-module.exports = {
+const config = {
   mode: 'production',
   entry: './src/index.ts',
   plugins: [new MiniCssExtractPlugin({ filename: 'bundle.css' })],
@@ -29,6 +29,8 @@ module.exports = {
   },
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: resolve('dist'),
   },
 };
+
+export default config;
