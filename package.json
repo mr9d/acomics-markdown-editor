@@ -1,6 +1,6 @@
 {
   "name": "acomics-markdown-editor",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Acomics Markdown editor",
   "main": "dist/bundle.js",
   "type": "module",
