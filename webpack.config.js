@@ -13,11 +13,6 @@ const config = {
         exclude: /node_modules/,
       },
       {
-        test: /src.*\.html$/i,
-        use: "html-loader",
-        exclude: /node_modules/,
-      },
-      {
         test: /src.*\.css$/i,
         use: [MiniCssExtractPlugin.loader, "css-loader"],
         exclude: /node_modules/,
@@ -28,6 +23,7 @@ const config = {
     extensions: ['.ts', '.js'],
   },
   output: {
+    clean: true,
     filename: 'bundle.js',
     path: resolve('dist'),
   },
