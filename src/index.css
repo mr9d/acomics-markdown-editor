@@ -1,8 +1,15 @@
-@import url('@mdxeditor/editor/style.css');
+.acomicsMarkdownEditorRoot .mdxeditor-diff-source-wrapper {
+  border: 1px solid var(--baseBorder);
+  border-top-width: 0;
+  border-radius: 0 0  var(--radius-medium) var(--radius-medium);
+}
 
-/*
- * Общие элементы
- */
-.acomicsMarkdownEditorWrapper {
-  display: block;
+.acomicsMarkdownEditorContent,
+.acomicsMarkdownEditorRoot .mdxeditor-source-editor {
+  box-sizing: border-box;
+  height: 300px;
+  max-height: 600px;
+  min-height: 150px;
+  overflow: auto;
+  resize: vertical;
 }

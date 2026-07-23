@@ -1,23 +1,29 @@
 import {
   BlockTypeSelect,
   BoldItalicUnderlineToggles,
-  CodeToggle,
   CreateLink,
+  DiffSourceToggleWrapper,
+  InsertImage,
+  InsertThematicBreak,
   ListsToggle,
   MDXEditor,
   Separator,
+  StrikeThroughSupSubToggles,
   UndoRedo,
-  headingsPlugin,
+  diffSourcePlugin,
+  imagePlugin,
   linkDialogPlugin,
   linkPlugin,
   listsPlugin,
   markdownShortcutPlugin,
   quotePlugin,
+  thematicBreakPlugin,
   toolbarPlugin,
 } from '@mdxeditor/editor';
 import { createElement, Fragment } from 'react';
 import { createRoot } from 'react-dom/client';
 
+import '@mdxeditor/editor/style.css';
 import './index.css';
 
 // HTML-элемент, по которому происходит инициализация редактора
@@ -26,17 +32,15 @@ const EDITOR_TAG: string = 'textarea';
 // Класс, по которому происходит инициализация редактора
 const EDITOR_CLASS: string = 'acomicsMarkdownEditor';
 
-// Класс-обертка редактора
-const WRAPPER_CLASS: string = 'acomicsMarkdownEditorWrapper';
-
 document.querySelectorAll<HTMLTextAreaElement>(`${EDITOR_TAG}.${EDITOR_CLASS}`).forEach((editorTag) => {
-  const wrapper = document.createElement('div');
-  wrapper.classList.add(WRAPPER_CLASS);
+  const editorRoot = document.createElement('div');
 
-  editorTag.insertAdjacentElement('afterend', wrapper);
+  editorTag.insertAdjacentElement('afterend', editorRoot);
   editorTag.hidden = true;
 
-  createRoot(wrapper).render(createElement(MDXEditor, {
+  createRoot(editorRoot).render(createElement(MDXEditor, {
+    className: 'acomicsMarkdownEditorRoot',
+    contentEditableClassName: 'acomicsMarkdownEditorContent',
     markdown: editorTag.value,
     onChange: (markdown: string) => {
       editorTag.value = markdown;
@@ -44,24 +48,34 @@ document.querySelectorAll<HTMLTextAreaElement>(`${EDITOR_TAG}.${EDITOR_CLASS}`).
     plugins: [
       toolbarPlugin({
         toolbarContents: () => createElement(
-          Fragment,
-          null,
-          createElement(UndoRedo),
-          createElement(Separator),
-          createElement(BoldItalicUnderlineToggles),
-          createElement(CodeToggle),
-          createElement(Separator),
-          createElement(BlockTypeSelect),
-          createElement(ListsToggle),
-          createElement(Separator),
-          createElement(CreateLink),
+          DiffSourceToggleWrapper,
+          {
+            options: ['rich-text', 'source'],
+            children: createElement(
+              Fragment,
+              null,
+              createElement(UndoRedo),
+              createElement(Separator),
+              createElement(BoldItalicUnderlineToggles, { options: ['Bold', 'Italic'] }),
+              createElement(StrikeThroughSupSubToggles, { options: ['Strikethrough'] }),
+              createElement(Separator),
+              createElement(BlockTypeSelect),
+              createElement(ListsToggle),
+              createElement(Separator),
+              createElement(CreateLink),
+              createElement(InsertImage),
+              createElement(InsertThematicBreak),
+            ),
+          },
         ),
       }),
       listsPlugin(),
       quotePlugin(),
-      headingsPlugin(),
       linkPlugin(),
       linkDialogPlugin(),
+      imagePlugin(),
+      thematicBreakPlugin(),
+      diffSourcePlugin({ viewMode: 'rich-text', diffMarkdown: editorTag.value }),
       markdownShortcutPlugin(),
     ],
   }));
