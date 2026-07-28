@@ -4,6 +4,7 @@ import {
   CreateLink,
   DiffSourceToggleWrapper,
   InsertImage,
+  InsertTable,
   InsertThematicBreak,
   ListsToggle,
   MDXEditor,
@@ -17,12 +18,13 @@ import {
   listsPlugin,
   markdownShortcutPlugin,
   quotePlugin,
+  tablePlugin,
   thematicBreakPlugin,
   toolbarPlugin,
 } from '@mdxeditor/editor';
 import { createElement, Fragment } from 'react';
 import { createRoot } from 'react-dom/client';
-import { literalHtmlPlugin } from './literalHtmlPlugin.ts';
+import { literalHtmlPlugin } from './literalHtmlPlugin';
 
 // CSS
 import '@mdxeditor/editor/style.css';
@@ -68,6 +70,7 @@ document.querySelectorAll<HTMLTextAreaElement>(`${EDITOR_TAG}.${EDITOR_CLASS}`).
               createElement(Separator),
               createElement(CreateLink),
               createElement(InsertImage),
+              createElement(InsertTable),
               createElement(InsertThematicBreak),
             ),
           },
@@ -78,6 +81,7 @@ document.querySelectorAll<HTMLTextAreaElement>(`${EDITOR_TAG}.${EDITOR_CLASS}`).
       linkPlugin(),
       linkDialogPlugin(),
       imagePlugin(),
+      tablePlugin(),
       thematicBreakPlugin(),
       diffSourcePlugin({ viewMode: 'rich-text', diffMarkdown: editorTag.value }),
       markdownShortcutPlugin(),
