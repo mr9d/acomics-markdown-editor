@@ -22,7 +22,9 @@ import {
 } from '@mdxeditor/editor';
 import { createElement, Fragment } from 'react';
 import { createRoot } from 'react-dom/client';
+import { literalHtmlPlugin } from './literalHtmlPlugin.ts';
 
+// CSS
 import '@mdxeditor/editor/style.css';
 import './index.css';
 
@@ -47,6 +49,7 @@ document.querySelectorAll<HTMLTextAreaElement>(`${EDITOR_TAG}.${EDITOR_CLASS}`).
       editorTag.value = markdown;
     },
     plugins: [
+      literalHtmlPlugin(),
       toolbarPlugin({
         toolbarContents: () => createElement(
           DiffSourceToggleWrapper,
