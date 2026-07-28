@@ -42,6 +42,7 @@ document.querySelectorAll<HTMLTextAreaElement>(`${EDITOR_TAG}.${EDITOR_CLASS}`).
     className: 'acomicsMarkdownEditorRoot',
     contentEditableClassName: 'acomicsMarkdownEditorContent',
     markdown: editorTag.value,
+    suppressHtmlProcessing: true,
     onChange: (markdown: string) => {
       editorTag.value = markdown;
     },
