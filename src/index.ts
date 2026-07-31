@@ -26,6 +26,7 @@ import {
 import { createElement, Fragment } from 'react';
 import { createRoot } from 'react-dom/client';
 import { literalHtmlPlugin } from './literalHtmlPlugin';
+import { plainTextCodeBlockPlugin } from './plainTextCodeBlockPlugin';
 
 // CSS
 import '@mdxeditor/editor/style.css';
@@ -77,6 +78,7 @@ document.querySelectorAll<HTMLTextAreaElement>(`${EDITOR_TAG}.${EDITOR_CLASS}`).
           },
         ),
       }),
+      plainTextCodeBlockPlugin(),
       headingsPlugin(),
       listsPlugin(),
       quotePlugin(),
