@@ -3,10 +3,21 @@ import {
   codeBlockPlugin,
   useCodeBlockEditorContext,
 } from '@mdxeditor/editor';
-import { type ChangeEvent, createElement } from 'react';
+import { type ChangeEvent, createElement, useEffect, useState } from 'react';
 
 const PlainTextCodeBlockEditor = ({ code, language }: CodeBlockEditorProps) => {
   const { setCode } = useCodeBlockEditorContext();
+  const [value, setValue] = useState(code);
+
+  useEffect(() => {
+    setValue(code);
+  }, [code]);
+
+  const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
+    const nextValue = event.target.value;
+    setValue(nextValue);
+    setCode(nextValue);
+  };
 
   return createElement(
     'div',
@@ -14,9 +25,9 @@ const PlainTextCodeBlockEditor = ({ code, language }: CodeBlockEditorProps) => {
     createElement('span', null, language || 'Code'),
     createElement('textarea', {
       'aria-label': language ? language + ' code' : 'Code block',
-      onChange: (event: ChangeEvent<HTMLTextAreaElement>) => setCode(event.target.value),
+      onChange: handleChange,
       spellCheck: false,
-      value: code,
+      value,
     }),
   );
 };
