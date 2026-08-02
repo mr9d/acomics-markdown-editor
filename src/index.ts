@@ -25,7 +25,7 @@ import {
 } from '@mdxeditor/editor';
 import { createElement, Fragment } from 'react';
 import { createRoot } from 'react-dom/client';
-import { editorFooterPlugin } from './editorFooterPlugin';
+import { footerPlugin } from './footerPlugin';
 import { literalHtmlPlugin } from './literalHtmlPlugin';
 import { plainTextCodeBlockPlugin } from './plainTextCodeBlockPlugin';
 
@@ -89,7 +89,7 @@ document.querySelectorAll<HTMLTextAreaElement>(`${EDITOR_TAG}.${EDITOR_CLASS}`).
       tablePlugin(),
       thematicBreakPlugin(),
       diffSourcePlugin({ viewMode: 'rich-text', diffMarkdown: editorTag.value }),
-      editorFooterPlugin(),
+      footerPlugin(),
       markdownShortcutPlugin(),
     ],
   }));

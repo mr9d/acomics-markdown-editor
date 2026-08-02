@@ -6,7 +6,7 @@ import {
 import { useCellValue } from '@mdxeditor/gurx';
 import { createElement } from 'react';
 
-import './editorFooterPlugin.css';
+import './footerPlugin.css';
 
 const EditorFooter = () => {
   const viewMode = useCellValue(viewMode$);
@@ -47,7 +47,7 @@ const EditorFooter = () => {
   );
 };
 
-export const editorFooterPlugin = realmPlugin({
+export const footerPlugin = realmPlugin({
   init: (realm) => {
     realm.pub(addBottomAreaChild$, EditorFooter);
   },
