@@ -9,17 +9,13 @@ import { createElement } from 'react';
 const EditorFooter = () => {
   const viewMode = useCellValue(viewMode$);
 
-  if (viewMode !== 'source') {
-    return null;
-  }
-
   return createElement(
     'footer',
     {
       'aria-label': 'Справка и участие в разработке',
       className: 'acomicsMarkdownEditorFooter',
     },
-    createElement(
+    viewMode === 'source' && createElement(
       'a',
       {
         href: 'https://github.github.com/gfm/',
@@ -28,7 +24,24 @@ const EditorFooter = () => {
       },
       'Справка по GitHub Flavored Markdown',
     ),
-
+    createElement(
+      'a',
+      {
+        href: 'https://github.com/mr9d/acomics-markdown-editor',
+        rel: 'noopener noreferrer',
+        target: '_blank',
+      },
+      'GitHub',
+    ),
+    createElement(
+      'a',
+      {
+        href: 'https://github.com/mr9d/acomics-public',
+        rel: 'noopener noreferrer',
+        target: '_blank',
+      },
+      'Сообщить об ошибке',
+    ),
   );
 };
 
