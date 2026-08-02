@@ -6,6 +6,8 @@ import {
 import { useCellValue } from '@mdxeditor/gurx';
 import { createElement } from 'react';
 
+import './editorFooterPlugin.css';
+
 const EditorFooter = () => {
   const viewMode = useCellValue(viewMode$);
 

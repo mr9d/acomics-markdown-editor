@@ -1,0 +1,27 @@
+.acomicsMarkdownEditorCodeBlock {
+  background: var(--basePageBg);
+  border: 1px solid var(--baseBorder);
+  border-radius: var(--radius-medium);
+  overflow: hidden;
+}
+
+.acomicsMarkdownEditorCodeBlock > span {
+  display: block;
+  padding: 4px 8px;
+  color: var(--baseTextContrast);
+  font-size: 12px;
+}
+
+.acomicsMarkdownEditorCodeBlock > textarea {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  min-height: 100px;
+  padding: 8px;
+  border: 0;
+  border-top: 1px solid var(--baseBorder);
+  background: transparent;
+  color: inherit;
+  font: 13px/1.5 monospace;
+  resize: vertical;
+}

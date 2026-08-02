@@ -4,43 +4,6 @@
   border-radius: 0 0 var(--radius-medium) var(--radius-medium);
 }
 
-.acomicsMarkdownEditorRoot:has(.acomicsMarkdownEditorFooter) .mdxeditor-diff-source-wrapper {
-  border-radius: 0;
-}
-
-.acomicsMarkdownEditorFooter {
-  box-sizing: border-box;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px 18px;
-  align-items: center;
-  justify-content: flex-end;
-  min-height: 36px;
-  padding: 8px 12px;
-  border: 1px solid var(--baseBorder);
-  border-top: 0;
-  border-radius: 0 0 var(--radius-medium) var(--radius-medium);
-  background: var(--basePageBg);
-  color: var(--baseTextContrast);
-  font-size: 12px;
-  line-height: 1.5;
-}
-
-.acomicsMarkdownEditorFooter a {
-  color: var(--accentText);
-  text-decoration: none;
-}
-
-.acomicsMarkdownEditorFooter a:hover {
-  text-decoration: underline;
-}
-
-.acomicsMarkdownEditorFooter a:focus-visible {
-  border-radius: var(--radius-small);
-  outline: 2px solid var(--focusColor);
-  outline-offset: 2px;
-}
-
 .acomicsMarkdownEditorContent,
 .acomicsMarkdownEditorRoot .mdxeditor-source-editor {
   box-sizing: border-box;
@@ -48,33 +11,5 @@
   max-height: 600px;
   min-height: 150px;
   overflow: auto;
-  resize: vertical;
-}
-
-.acomicsMarkdownEditorCodeBlock {
-  background: var(--basePageBg);
-  border: 1px solid var(--baseBorder);
-  border-radius: var(--radius-medium);
-  overflow: hidden;
-}
-
-.acomicsMarkdownEditorCodeBlock > span {
-  display: block;
-  padding: 4px 8px;
-  color: var(--baseTextContrast);
-  font-size: 12px;
-}
-
-.acomicsMarkdownEditorCodeBlock > textarea {
-  box-sizing: border-box;
-  display: block;
-  width: 100%;
-  min-height: 100px;
-  padding: 8px;
-  border: 0;
-  border-top: 1px solid var(--baseBorder);
-  background: transparent;
-  color: inherit;
-  font: 13px/1.5 monospace;
   resize: vertical;
 }

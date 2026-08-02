@@ -1,0 +1,36 @@
+.acomicsMarkdownEditorRoot:has(.acomicsMarkdownEditorFooter) .mdxeditor-diff-source-wrapper {
+  border-radius: 0;
+}
+
+.acomicsMarkdownEditorFooter {
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: 36px;
+  padding: 8px 12px;
+  border: 1px solid var(--baseBorder);
+  border-top: 0;
+  border-radius: 0 0 var(--radius-medium) var(--radius-medium);
+  background: var(--basePageBg);
+  color: var(--baseTextContrast);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.acomicsMarkdownEditorFooter a {
+  color: var(--accentText);
+  text-decoration: none;
+}
+
+.acomicsMarkdownEditorFooter a:hover {
+  text-decoration: underline;
+}
+
+.acomicsMarkdownEditorFooter a:focus-visible {
+  border-radius: var(--radius-small);
+  outline: 2px solid var(--focusColor);
+  outline-offset: 2px;
+}
