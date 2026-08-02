@@ -25,9 +25,9 @@ import {
 } from '@mdxeditor/editor';
 import { createElement, Fragment } from 'react';
 import { createRoot } from 'react-dom/client';
-import { footerPlugin } from './footerPlugin';
-import { literalHtmlPlugin } from './literalHtmlPlugin';
-import { plainTextCodeBlockPlugin } from './plainTextCodeBlockPlugin';
+import { footerPlugin } from './plugin/footer';
+import { literalHtmlPlugin } from './plugin/literalHtml';
+import { plainTextCodeBlockPlugin } from './plugin/plainTextCodeBlock';
 
 // CSS
 import '@mdxeditor/editor/style.css';

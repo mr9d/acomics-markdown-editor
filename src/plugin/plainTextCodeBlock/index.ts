@@ -5,7 +5,7 @@ import {
 } from '@mdxeditor/editor';
 import { type ChangeEvent, createElement, useEffect, useState } from 'react';
 
-import './plainTextCodeBlockPlugin.css';
+import './style.css';
 
 const PlainTextCodeBlockEditor = ({ code, language }: CodeBlockEditorProps) => {
   const { setCode } = useCodeBlockEditorContext();
